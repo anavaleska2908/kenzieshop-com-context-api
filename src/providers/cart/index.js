@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const CartContext = createContext([]);
@@ -6,40 +6,41 @@ const CartContext = createContext([]);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem('@kenzieshop:cart')));
+  }, []);
+
   const addToCart = (currentProduct) => {
-    console.log(currentProduct);
-    const productCurrentSale = cart.find(
+    let StorageCart = [...cart];
+    const productCurrentSale = StorageCart.find(
       (item) => item.id === currentProduct.id
     );
 
     if (productCurrentSale === undefined) {
-      currentProduct.count = 1;
-      setCart([...cart, currentProduct]);
-      toast.success('Produto adicionado com sucesso!');
-      return cart;
+      currentProduct.quantity = 1;
+      StorageCart.push(currentProduct);
     } else {
-      const indexProduct = cart.findIndex(
-        (item) => item.id === currentProduct.id
+      StorageCart.forEach(
+        (item) => item.id === currentProduct.id && (item.quantity += 1)
       );
-      cart[indexProduct].count += 1;
-      return cart;
     }
+    setCart([...StorageCart]);
+    localStorage.setItem('@kenzieshop:cart', JSON.stringify(StorageCart));
   };
 
   const removeFromCart = (currentProduct) => {
-    const filteredElement = cart.filter((item) => item !== currentProduct);
+    let storage = [...cart];
 
-    const indexProduct = cart.findIndex(
-      (item) => item.id === currentProduct.id
-    );
-
-    if (cart[indexProduct].count > 1) {
-      cart[indexProduct].count -= 1;
-      toast.success('Um produto foi removido!');
-      return cart;
+    if (currentProduct.quantity > 1) {
+      storage.forEach(
+        (item) => item.id === currentProduct.id && (item.quantity -= 1)
+      );
+    } else {
+      storage = cart.filter((item) => item.id !== currentProduct.id);
     }
-    toast.success('Todos os produtos desse modelo foram removidos!');
-    return filteredElement;
+
+    setCart([...storage]);
+    localStorage.setItem('@kenzieshop:cart', JSON.stringify(storage));
   };
 
   return (

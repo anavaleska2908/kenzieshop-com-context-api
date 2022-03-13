@@ -1,5 +1,4 @@
 import { Button } from '../Button';
-
 import { useCart } from '../../providers/cart';
 
 export const CardShowcase = ( {item}) => {

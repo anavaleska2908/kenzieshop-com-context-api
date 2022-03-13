@@ -26,17 +26,14 @@ const filters = [
 ]
 
 export const Menu = () => {
-  const { filterProducts, filterAll } = useProducts();
+  const { filterProducts} = useProducts();
 
   const handleClick = ( filter ) => {
-    console.log(filter)
     filterProducts( filter );
-    // filterAll('')
   }
 
   return (
     <nav>
-      {/* <Button onClick={() => filterAll()}>Todos</Button> */}
       { filters.map( ( filter, index ) => <Button key={ index } onClick={ () => handleClick( filter ) }>{ filter }</Button>)}
     </nav>
   )

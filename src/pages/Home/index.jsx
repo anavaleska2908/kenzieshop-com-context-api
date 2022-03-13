@@ -1,3 +1,4 @@
+import { CartDisplay } from "../../components/CartDisplay"
 import { Display } from "../../components/Display"
 import { Header } from "../../components/Header"
 import { Menu } from "../../components/Menu"
@@ -7,7 +8,8 @@ export const Home = () => {
     <>
       <Header />
       <Menu />
-      <Display/>
+      <Display />
+      <CartDisplay />
     </>
   )
 }
