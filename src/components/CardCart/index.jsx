@@ -1,20 +1,27 @@
 import { Button } from '../Button';
 import { useCart } from '../../providers/cart';
+import {IoBagRemove} from 'react-icons/io5'
+import { Context, DivButton, ImgButton, Li } from './styles';
 
 export const CardCart = ( { item } ) => {
-  const { cart, removeFromCart } = useCart();
+  const { removeFromCart } = useCart();
 
   const handleRemoveFromCart = (item) => {
     removeFromCart(item)
   }
 
   return (
-    <li>
-    <img src={ item.image } alt={ item.name } />
-    <p>{ item.name }</p>
-    <p>{ item.category }</p>
-    <p>{ item.price }</p>
-    <Button onClick={() => handleRemoveFromCart(item)}>Remover do Carrinho</Button>
- </li>
+    <Li>
+      <ImgButton>
+        <img src={ item.image } alt={ item.name } />
+      </ImgButton>
+      <Context>
+        <p>{ item.name }</p>
+        <p>U$: { item.price }</p>        
+      </Context>
+      <DivButton>
+        <Button onClick={() => handleRemoveFromCart(item)}><IoBagRemove size={ 12 } /></Button>
+      </DivButton>
+ </Li>
   )
 }

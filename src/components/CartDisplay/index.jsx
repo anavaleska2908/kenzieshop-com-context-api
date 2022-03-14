@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useCart } from "../../providers/cart";
 import { CardCart } from "../CardCart";
+import { CartText, Container, Content, EmptyCart, Total } from "./styles";
+
 
 export const CartDisplay = () => {
   const { cart } = useCart();
@@ -11,27 +13,34 @@ export const CartDisplay = () => {
 
 
   return (
-    <div>
+    <Container>
+      <div>
+        <h4>
+          Carrinho
+        </h4>
+      </div>
+      <EmptyCart>
       { cart[ 0 ] !== undefined ? (
         <>
-          <ul>
+          <Content>
             {cart.map((item) => <CardCart key={item.id} item={item}/>)}
-          </ul>
-          <div>
+          </Content>
+          <Total>
             <p>Total:</p>
             <p>U$ { cart.reduce((previousValue, price) => previousValue + price.price, 0).toFixed(2)}</p>
-          </div>
+          </Total>
         </>
       ) : (
-          <>
+          <CartText>
             <p>
               Sua sacola está vazia
             </p>
             <p>
               Adicione itens
             </p>
-          </>
-      )}
-    </div>
+          </CartText>
+        ) }
+        </EmptyCart>
+    </Container>
   )
 }

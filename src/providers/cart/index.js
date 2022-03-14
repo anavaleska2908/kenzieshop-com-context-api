@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem('@kenzieshop:cart')));
+    setCart(JSON.parse(localStorage.getItem('@kenzieshop:cart')) || []);
   }, []);
 
   const addToCart = (currentProduct) => {
@@ -26,6 +26,7 @@ export const CartProvider = ({ children }) => {
     }
     setCart([...StorageCart]);
     localStorage.setItem('@kenzieshop:cart', JSON.stringify(StorageCart));
+    toast.success('Produto adicionado!');
   };
 
   const removeFromCart = (currentProduct) => {
@@ -41,6 +42,7 @@ export const CartProvider = ({ children }) => {
 
     setCart([...storage]);
     localStorage.setItem('@kenzieshop:cart', JSON.stringify(storage));
+    toast.success('Produto removido!');
   };
 
   return (
