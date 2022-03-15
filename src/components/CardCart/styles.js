@@ -33,8 +33,8 @@ export const Context = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 1em;
-  margin-left: 2.5em;
+  margin-top: 1.5em;
+  margin-left: 1.4em;
   align-items: center;
 
   p {
@@ -49,9 +49,23 @@ export const DivButton = styled.div`
   button {
     border-radius: 50%;
     margin-top: 0.5em;
+    margin-right: 2px;
 
     svg {
       margin-top: 0.1em;
     }
+  }
+`;
+
+export const Quantity = styled.div`
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  margin-top: 5em;
+  margin-left: 0.6em;
+  border-radius: 5px;
+  background-color: var(--color-primary);
+
+  P {
+    font-size: 0.7em;
+    color: var(--grey-3);
   }
 `;

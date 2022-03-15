@@ -27,7 +27,7 @@ export const CartDisplay = () => {
           </Content>
           <Total>
             <p>Total:</p>
-            <p>U$ { cart.reduce((previousValue, price) => previousValue + price.price, 0).toFixed(2)}</p>
+            <p>U$ { cart.reduce((previousValue, {price, quantity}) => previousValue + (price * quantity), 0).toFixed(2)}</p>
           </Total>
         </>
       ) : (

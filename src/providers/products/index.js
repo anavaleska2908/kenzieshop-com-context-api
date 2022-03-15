@@ -27,7 +27,7 @@ export const ProductsProvider = ({ children }) => {
     },
     {
       id: 4,
-      name: 'Kurosaki Ichigo (Máscara Hollow)',
+      name: 'Kurosaki Ichigo',
       category: 'Bleach',
       price: 129.99,
       image: './assets/img/ichigo-hollow.jpg',
@@ -41,7 +41,7 @@ export const ProductsProvider = ({ children }) => {
     },
     {
       id: 6,
-      name: 'Kurosaki Ichigo (Bankai)',
+      name: 'Kurosaki Ichigo',
       category: 'Bleach',
       price: 29.99,
       image: './assets/img/ichigo-bankai.jpg',
